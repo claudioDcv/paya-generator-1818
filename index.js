@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-one = [ "La cueca pá los chilenos",
+laUno = [ "La cueca pá los chilenos",
 "Si no le gustan las cuecas",
 "Hoy es 18 de Septiembre",
 "Yo también voy a la ramá",
@@ -51,7 +51,7 @@ one = [ "La cueca pá los chilenos",
 "Mejor seamos amigos",
 "Arrimese ma pa ca"]
 
-two = [
+laDos = [
 "Es el baile nacional",
 "Nunca sabrá lo que es bueno",
 "Y me voy a la ramá",
@@ -74,7 +74,7 @@ two = [
 "Por que le voy a coquetear",
 "Y encontrar buen matrimonio",
 "No te da novio chiquilla",
-"Para ponerla en un altar",
+"Para plaUnorla en un altar",
 "Que llevamos en el corazón",
 "Y por don José Miguel Carrera",
 "Por toda nuestra región",
@@ -102,7 +102,7 @@ two = [
 "Y no peliemos más",
 "Un buen vigoteao"]
 
-three = [
+laTerceraPue = [
 "Y no hay que tener vergüenza",
 "Y a la tierra donde vaya",
 "A tomarme un vaso de chicha",
@@ -116,7 +116,7 @@ three = [
 "Sea un brindi o una paya",
 "no valla a ser cosa",
 "Mira que con este viejito",
-"Una viudita con camioneta",
+"Una viudita con camilaUnota",
 "Los huasos de aquí de La Ligua",
 "Mira que a veces los viejos chicos",
 "Mira que llegando a la puerta del lazo",
@@ -154,7 +154,7 @@ three = [
 "Porque las fiestas se acaban",
 "Pa los vegetarianos"]
 
-four = [
+yLaCuarta = [
 "Para salirla a bailar",
 "Siempre será un mal chileno",
 "Y a comerme una empaná",
@@ -206,7 +206,7 @@ four = [
 
 
 
-function disemvowel(str) {
+function leSacamoLaConsonantes(str) {
 var patt1 = /[^bcdfghjklmnñpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ ]/g;
 //console.log("SOLO VOCALES: ", str.match(patt1).join(""));
 var str = str.match(patt1).join("")
@@ -235,29 +235,29 @@ return str;
 };
 
 
-var getRandomFrase = function(arr){
+var leTiramosUnaFraseAlAchunte = function(arr){
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-var buscarRima = function(type){
+var buscandoLaRimaPue = function(type){
   var frases = [];
 
   do {
-    frases[0] = getRandomFrase(one);
-    frases[2] = getRandomFrase(three);
+    frases[0] = leTiramosUnaFraseAlAchunte(laUno);
+    frases[2] = leTiramosUnaFraseAlAchunte(laTerceraPue);
 
-    var aVocal = disemvowel(frases[0]);
-    var cVocal = disemvowel(frases[2]);
+    var aVocal = leSacamoLaConsonantes(frases[0]);
+    var cVocal = leSacamoLaConsonantes(frases[2]);
 
   } while (
     aVocal.substring(aVocal.length-3) != cVocal.substring(cVocal.length-3)
   );
 
   do {
-    frases[1] = getRandomFrase(two);
-    frases[3] = getRandomFrase(four);
-    var bVocal = disemvowel(frases[1]);
-    var dVocal = disemvowel(frases[3]);
+    frases[1] = leTiramosUnaFraseAlAchunte(laDos);
+    frases[3] = leTiramosUnaFraseAlAchunte(yLaCuarta);
+    var bVocal = leSacamoLaConsonantes(frases[1]);
+    var dVocal = leSacamoLaConsonantes(frases[3]);
   } while (
     bVocal.substring(bVocal.length-3) != dVocal.substring(dVocal.length-3)
   );
@@ -266,7 +266,7 @@ var buscarRima = function(type){
 
     return {
       "title" : "Paya generator 1818",
-      "version" : "0.0.1",
+      "version" : "0.0.2",
       "paya" :[
         {
           "txt" : frases[0],
@@ -294,12 +294,12 @@ var buscarRima = function(type){
 
 
 app.get('/', function (req, res) {
-	res.send('<div style="padding:15px;border-radius:15px;background:#607d8b;font-family:arial,helvetica,sans;"><h1 style="color:red;"> Paya Generator 1818 </h1>' + buscarRima()+'</div>');
+	res.send('<div style="padding:15px;border-radius:15px;background:#607d8b;font-family:arial,helvetica,sans;"><h1 style="color:red;"> Paya Generator 1818 </h1>' + buscandoLaRimaPue()+'</div>');
 });
 
 //Service
 app.get('/json/paya', function (req, res) {
-	res.json(buscarRima('json'));
+	res.json(buscandoLaRimaPue('json'));
 });
 
 var port = process.env.PORT || 1818;
