@@ -282,7 +282,7 @@ var buscandoLaRimaPue = function(type){
         },
         {
           "txt" : frases[3],
-          "clr" : "whte"
+          "clr" : "white"
         }
       ]
     }
